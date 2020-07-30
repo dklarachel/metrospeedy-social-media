@@ -48,6 +48,7 @@ def filterOriginal (tweetList):
     for tweet in tweetList:
         if "retweeted_status" not in tweet:
             originalTweets.append(tweet)
+            del tweet['user'] # no need for user object 
     return originalTweets
 
 def writeCSV (tweetDict):
@@ -66,7 +67,7 @@ testDict = {
 
 tweetList = getTweetDict()
 originals = filterOriginal(tweetList)
-print(len(originals))
+pprint.pprint(originals[0])
 
 
 
