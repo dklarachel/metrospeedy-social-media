@@ -3,17 +3,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-# from selenium.webdriver.interactions import Actions
 
 driver = webdriver.Chrome("chromedriver.exe")
 driver.maximize_window()
-
-# # options = webdriver.Options()
-# # options.add_argument('--ignore-certificate-errors')
-# # options.add_argument("--test-type")
-# # options.binary_location = "/usr/bin/chromium"
-# # driver = webdriver.Chrome(chrome_options=options)
-# driver.get('https://instagram.com')
 
 driver.get('https://instagram.com')
 
