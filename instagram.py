@@ -52,5 +52,14 @@ search_bar_field = driver.find_element_by_xpath('//*[@id="react-root"]/section/n
 search_bar_field.send_keys('#delivery')
 search_bar_field.send_keys(Keys.RETURN)
 
+# click on hashtag that was searched
+WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div[3]/div[2]/div/a[1]')))
+searched_query_link = driver.find_element_by_xpath('//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div[3]/div[2]/div/a[1]')
+driver.execute_script("arguments[0].click();", searched_query_link)
+# add something to make sure it's the right one?
 
-
+# get post count for search query
+WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="react-root"]/section/main/header/div[2]/div[1]/div[2]/span/span')))
+post_count = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/header/div[2]/div[1]/div[2]/span/span')
+post_count = post_count.text
+print(post_count)
