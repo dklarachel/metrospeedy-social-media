@@ -30,25 +30,25 @@ def login (email, password):
     # not_now = driver.find_element_by_xpath('//*[@id="ember512"]/button[2]')
     # not_now.click()
 
-def search_query ():
-    # for x in search_list:
+def search_query (search_list):
+    results = {}
+    for x in search_list:
         # enter query into search bar
-    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ember14"]')))
-    search_bar = driver.find_element_by_xpath('//*[@id="ember14"]')
-    search_bar.click()
-    search_bar_field = driver.find_element_by_xpath('//*[@id="ember16"]/input')
-    search_bar_field.send_keys('#nyc')
-    search_bar_field.send_keys(Keys.RETURN)
+        WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ember14"]')))
+        search_bar = driver.find_element_by_xpath('//*[@id="ember14"]')
+        search_bar.click()
+        search_bar_field = driver.find_element_by_xpath('//*[@id="ember16"]/input')
+        search_bar_field.clear()
+        search_bar_field.send_keys(x)
+        search_bar_field.send_keys(Keys.RETURN)
 
-    # get results count for search query
-    # WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="ember563"]/div/h3')))
-    # results_count = driver.find_element_by_xpath('//*[@id="ember563"]/div/h3')
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'search-results__total')))
-    results_count = driver.find_element_by_class_name("search-results__total")
-    results_count = results_count.text
-    for x in ["Showing ", ",", " results"]:
-        results_count = results_count.replace(x, "")
-    print(results_count)
-
+        # get results count for search query
+        WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'search-results__total')))
+        results_count = driver.find_element_by_class_name("search-results__total")
+        results_count = results_count.text
+        for n in ["Showing ", ",", " results"]:
+            results_count = results_count.replace(n, "")
+        results[x] = results_count
+    return results
 
 

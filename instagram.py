@@ -57,6 +57,7 @@ def login (username, password):
 #     print(post_count)
 
 def search_query (search_list):
+    results = {}
     for x in search_list:
         # enter query into search bar
         WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div/div/span[1]')))
@@ -76,6 +77,9 @@ def search_query (search_list):
         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="react-root"]/section/main/header/div[2]/div[1]/div[2]/span/span')))
         post_count = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/header/div[2]/div[1]/div[2]/span/span')
         post_count = post_count.text.replace(",", "")
-        print(post_count)
+        results[x] = post_count
+    return results
+
+
 
 

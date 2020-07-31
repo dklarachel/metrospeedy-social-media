@@ -15,7 +15,7 @@ def get_hashtags ():
             row_count =+ 1
         return hashtags
 
-def write_hashtag (instagram_values):
+def write_hashtags (instagram_values, linkedin_values):
     fieldnames = []
     with open('hashtags copy.csv', mode="r") as hashtags_file:
         reader = csv.DictReader(hashtags_file)
@@ -27,8 +27,17 @@ def write_hashtag (instagram_values):
     with open('hashtags copy.csv', mode="w") as hashtags_file:
         writer = csv.DictWriter(hashtags_file, fieldnames=fieldnames, lineterminator = '\n')
         writer.writeheader()
+        # for index, value in enumerate(instagram_values):
+        #     writer.writerow({
+        #         'hashtag': hashtags[index],
+        #         'instagram': value
+        #     })
         for value in instagram_values:
-            writer.writerow({'instagram':value})
+            writer.writerow({
+                'hashtag': value,
+                'instagram': instagram_values[value],
+                'linkedin': linkedin_values[value]
+            })
 
 
 
