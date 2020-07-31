@@ -79,6 +79,3 @@ def search_query (search_list):
         print(post_count)
 
 
-login('metrospeedy', 'Summer2017!')
-search_query(get_hashtags())
-
