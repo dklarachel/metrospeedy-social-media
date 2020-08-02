@@ -12,9 +12,11 @@ api = tweepy.API(auth)
 # for tweet in tweepy.Cursor(api.search, q='tweepy').items(10):
 #     print(tweet.text)
 
-def getAnyTweets ():
-    for tweet in tweepy.Cursor(api.search, q='delivery').items(10):
-        return tweet.author
+def tweets_from_search (query):
+    tweet_list = []
+    for tweet in tweepy.Cursor(api.search, q=query).items():
+        tweet_list.append(tweet)
+    return tweet_list
 
 def getTweets ():
     favorite_count_list = []
@@ -59,15 +61,21 @@ def writeCSV (tweetDict):
         writer.writeheader()
         writer.writerow({'name':'rachel','age':17,'sign':'aries'})
 
-testDict = {
-    'name':'rachel',
-    'age':17,
-    'sign':'aries'
-}
+# testDict = {
+#     'name':'rachel',
+#     'age':17,
+#     'sign':'aries'
+# }
 
-tweetList = getTweetDict()
-originals = filterOriginal(tweetList)
-pprint.pprint(originals[0])
+# tweetList = getTweetDict()
+# originals = filterOriginal(tweetList)
+# pprint.pprint(originals[0])
+
+test = getTweetDict()
+test = filterOriginal(test)
+x = len(test)
+pprint.pprint(test[x - 1])
+
 
 
 

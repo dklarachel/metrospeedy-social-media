@@ -17,7 +17,7 @@ def get_hashtags ():
 
 def write_hashtags (instagram_values, linkedin_values):
     fieldnames = []
-    with open('hashtags copy.csv', mode="r") as hashtags_file:
+    with open('hashtags.csv', mode="r") as hashtags_file:
         reader = csv.DictReader(hashtags_file)
         row_count = 0
         for row in reader:
@@ -38,6 +38,22 @@ def write_hashtags (instagram_values, linkedin_values):
                 'instagram': instagram_values[value],
                 'linkedin': linkedin_values[value]
             })
+        print(instagram_values)
+        print(linkedin_values)
+
+def get_data (file, columns):
+    '''gets data for specified columns (inputted as a list)'''
+    with open(file, mode="r") as csv_file:
+        reader = csv.DictReader(csv_file)
+        row_count = 0
+        for row in reader:
+            for col in columns:
+                if col == "time":
+                    value = row[col][11:16]
+                else:
+                    value = row[col]
+                print("{} is {}".format(col, value))
+            row_count += 1
 
 
 

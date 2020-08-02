@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 from csv_ops import get_hashtags
 
@@ -30,6 +31,27 @@ def login (email, password):
     # not_now = driver.find_element_by_xpath('//*[@id="ember512"]/button[2]')
     # not_now.click()
 
+# def search_query (search_list):
+#     results = {}
+#     for x in search_list:
+#         # enter query into search bar
+#         WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="ember14"]')))
+#         search_bar = driver.find_element_by_xpath('//*[@id="ember14"]')
+#         search_bar.click()
+#         search_bar_field = driver.find_element_by_xpath('//*[@id="ember16"]/input')
+#         search_bar_field.clear()
+#         search_bar_field.send_keys(x)
+#         search_bar_field.send_keys(Keys.RETURN)
+
+#         # get results count for search query
+#         driver.get(driver.current_url)
+#         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'search-results__total')))
+#         results_count = driver.find_element_by_class_name("search-results__total")
+#         results_count = results_count.text
+#         for n in ["Showing ", ",", " results"]:
+#             results_count = results_count.replace(n, "")
+#         results[x] = results_count
+#     return results
 def search_query (search_list):
     results = {}
     for x in search_list:
@@ -43,12 +65,30 @@ def search_query (search_list):
         search_bar_field.send_keys(Keys.RETURN)
 
         # get results count for search query
-        WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'search-results__total')))
-        results_count = driver.find_element_by_class_name("search-results__total")
-        results_count = results_count.text
-        for n in ["Showing ", ",", " results"]:
-            results_count = results_count.replace(n, "")
-        results[x] = results_count
+        WebDriverWait(driver, 15).until(EC.url_changes(driver.current_url))
+        # WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'search-results__total')))
+        # results_count = driver.find_element_by_class_name("search-results__total")
+        # if not results_count:
+        #     print("no posts")
+        #     results[x] = '0'
+        #     x = next(search_list)
+        #     print(x)
+        # else:
+        #     print("posts")
+        #     results_count = results_count.text
+        #     for n in ["Showing ", ",", " results"]:
+        #         results_count = results_count.replace(n, "")
+        #     results[x] = results_count
+        try:
+            results_count = driver.find_element_by_class_name("search-results__total")
+        except NoSuchElementException:
+            print("No element found")
+            results[x] = '0'
+        else:
+            print("posts")
+            results_count = driver.find_element_by_class_name("search-results__total").text
+            for n in ["Showing ", ",", " results"]:
+                results_count = results_count.replace(n, "")
+            results[x] = results_count
     return results
-
 
