@@ -10,10 +10,16 @@ csv_files = [
     "./twitter_insights/3.csv"
 ]
 
+# data_list = []
+# for file in csv_files:
+#     data_list += get_data(file, x_vars)
+# write_data ("twitter_analytics.csv", x_vars, data_list)
+
 data_list = []
 for file in csv_files:
     data_list += get_data(file, x_vars)
-write_data ("twitter_analytics.csv", x_vars, data_list)
+print(data_list)
+#write_data ("twitter_analytics.csv", x_vars, data_list)
 
 
 

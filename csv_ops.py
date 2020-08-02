@@ -58,7 +58,7 @@ def get_data (file, columns):
         return data_list
 
 def write_data (file, fieldnames, data):
-    ''' data parameter is a list of dictionaries '''
+    ''' fieldnames parameter is a list, data parameter is a list of dictionaries , each list item is a row'''
     with open(file, mode="w") as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator = '\n')
         writer.writeheader()
