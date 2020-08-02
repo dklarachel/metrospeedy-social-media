@@ -43,17 +43,27 @@ def write_hashtags (instagram_values, linkedin_values):
 
 def get_data (file, columns):
     '''gets data for specified columns (inputted as a list)'''
+    data_list = []
     with open(file, mode="r") as csv_file:
         reader = csv.DictReader(csv_file)
-        row_count = 0
         for row in reader:
+            data = {}
             for col in columns:
                 if col == "time":
                     value = row[col][11:16]
                 else:
                     value = row[col]
-                print("{} is {}".format(col, value))
-            row_count += 1
+                data[col] = value
+            data_list.append(data)
+        return data_list
+
+def write_data (file, fieldnames, data):
+    ''' data parameter is a list of dictionaries '''
+    with open(file, mode="w") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator = '\n')
+        writer.writeheader()
+        for dict in data:
+            writer.writerow(dict)
 
 
 
