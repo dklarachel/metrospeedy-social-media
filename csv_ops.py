@@ -90,8 +90,31 @@ def get_col (file, series, column):
             line_count += 1
         return data
 
-col_data = get_col("hashtags copy.csv", "hashtag", "instagram")
-pprint.pprint(col_data)
+def get_col_names (file, first_col=False):
+    '''get names of columns, option to exclude first column, default is False for first_col'''
+    with open (file, mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file, delimiter=',')
+        row_count = 0
+        for row in csv_reader:
+            if row_count == 0:
+                col_names = list(row.keys())
+                if not first_col:
+                    col_names.remove(col_names[0])
+            row_count += 1
+        return col_names
+        
+def write_data_from_list (file, fieldnames, list):
+    '''
+    write data from a list of lists to a column
+    each list is a column
+    '''
+    with open(file, mode="w") as csv_file:
+        writer = csv.writer(csv_file, lineterminator = '\n')
+        for sub_list in list:
+            writer.writerow(sub_list)
+
+
+
         
 
     

@@ -1,13 +1,13 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+# from selenium import webdriver
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.common.by import By
+# from selenium.common.exceptions import NoSuchElementException
 
-from csv_ops import get_hashtags
+# from csv_ops import get_hashtags
 
-import time
+# import time
 
 
 #res = [int(i) for i in results_count.split() if i.isdigit()] 
@@ -53,3 +53,14 @@ print(boom)
 # result = sort_dict_nums(test_dict, False)
 # print(result)
 #print(list(test_dict.values()))
+
+import numpy as np
+
+orig = [
+    ["instagram", 23423, 235345],
+    ["twitter", 125, 77],
+    ["facebook", 999, 288383838]
+]
+
+transposed = np.transpose(orig)
+print(transposed)
