@@ -1,4 +1,5 @@
 import csv
+import pprint
 
 from random import random
 from random import randint
@@ -42,7 +43,7 @@ def write_hashtags (instagram_values, linkedin_values):
         print(linkedin_values)
 
 def get_data (file, columns):
-    '''gets data for specified columns (inputted as a list)'''
+    '''gets data for specified columns (inputted as a list), outputs list of dictionaries {'column':'item'}'''
     data_list = []
     with open(file, mode="r") as csv_file:
         reader = csv.DictReader(csv_file)
@@ -74,4 +75,23 @@ def write_data (file, fieldnames, data):
 #         if line_count != 0:
 #             print(row)
 #         line_count =+ 1
+
+def get_col (file, series, column):
+    '''takes in series as col title, get data from specified column, returns dictionary {'series:'col_item'}'''
+    data = {}
+    with open(file, mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if line_count != 0:
+                key = row[series]
+                value = row[column]
+                data[key] = value
+            line_count += 1
+        return data
+
+col_data = get_col("hashtags copy.csv", "hashtag", "instagram")
+pprint.pprint(col_data)
+        
+
     
