@@ -117,18 +117,19 @@ def tweet_count (keys, tweet_list):
 
 # print(count_dict)
 
-hashtags = get_hashtags()
-tweet_list = mine_tweets(hashtags)
-count_dict = tweet_count(
-    keys = hashtags,
-    tweet_list = tweet_list
-)
-write_data(
-    file = "twitter_hashtags.csv",
-    fieldnames = ["hashtag", "tweet count"],
-    data = count_dict
-)
-print("all done")
+# hashtags = get_hashtags()
+# tweet_list = mine_tweets(hashtags)
+# count_dict = tweet_count(
+#     keys = hashtags,
+#     tweet_list = tweet_list
+# )
+# write_data(
+#     file = "twitter_hashtags.csv",
+#     fieldnames = ["hashtag", "tweet count"],
+#     data = count_dict
+# )
+# print("all done")
+
 # write_data(
 #     file = "twitter_hashtags.csv",
 #     fieldnames = ["hashtag", "tweet count"],
@@ -136,11 +137,8 @@ print("all done")
 # )
 
 
-
-
-
-
-
+for tweet in tweepy.Cursor(api.search, q="avocado toast").items(1):
+    pprint.pprint(tweet._json)
 
 
 
