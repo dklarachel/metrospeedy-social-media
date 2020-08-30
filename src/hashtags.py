@@ -1,12 +1,5 @@
-from csv_ops import get_hashtags
-from csv_ops import write_hashtags
-from csv_ops import get_data
-from csv_ops import get_col
-from csv_ops import get_col_names
-from csv_ops import write_data_from_list
-
-from dict_ops import sort_dict_nums
-from dict_ops import keys_from_tuple
+from csv_ops import get_hashtags, write_hashtags, get_data, get_col, get_col_names, write_data_from_list
+from dict_ops import sort_dict_nums, keys_from_tuple
 
 import pprint
 import numpy as np
