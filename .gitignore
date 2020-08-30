@@ -1,8 +1,8 @@
 .env
 /src/test.py
 /csv
-/fb_analytics
 /twitter_insights
+/fb_analytics
 debug.log
 desktop.ini
 geckodriver.log
