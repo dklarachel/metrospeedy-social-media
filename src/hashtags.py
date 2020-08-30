@@ -12,31 +12,33 @@ import pprint
 import numpy as np
 import csv 
 
-# import instagram
-# import linkedin
+import instagram
+import linkedin
 
-# instagram.login(
-#     username = "metrospeedy",
-#     password = "Summer2017!"
-# )
+from settings import IG_USERNAME, IG_PASSWORD, LI_EMAIL, LI_PASSWORD
 
-# instagram_values = instagram.search_query(
-#     search_list = get_hashtags()
-# )
+instagram.login(
+    username = IG_USERNAME,
+    password = IG_PASSWORD
+)
 
-# linkedin.login(
-#     email = "rachlin440@gmail.com",
-#     password = "purpleepix4"
-# )
+instagram_values = instagram.search_query(
+    search_list = get_hashtags()
+)
 
-# linkedin_values = linkedin.search_query(
-#     search_list = get_hashtags()
-# )
+linkedin.login(
+    email = LI_EMAIL,
+    password = LI_PASSWORD
+)
 
-# write_hashtags(
-#     instagram_values = instagram_values,
-#     linkedin_values = linkedin_values
-# )
+linkedin_values = linkedin.search_query(
+    search_list = get_hashtags()
+)
+
+write_hashtags(
+    instagram_values = instagram_values,
+    linkedin_values = linkedin_values
+)
 
 '''
 get each column of hashtag counts 
@@ -44,13 +46,13 @@ sort column from greatest to least
 print sorted hashtags 
 '''
 
-social_media = get_col_names("hashtags copy.csv")
+social_media = get_col_names("./csv/hashtags copy.csv")
 
 def get_ordered_lists ():
     sorted_list = []
     for platform in social_media:
         hashtag_data = get_col(
-            file = "hashtags copy.csv",
+            file = "./csv/hashtags copy.csv",
             series = "hashtag",
             column = platform
         )
@@ -67,12 +69,10 @@ data = get_ordered_lists()
 data_transposed = np.transpose(data).tolist()
 
 write_data_from_list(
-    file = "hashtags ordered.csv",
+    file = "./csv/hashtags ordered.csv",
     fieldnames = social_media,
     list = data_transposed
 )
-
-
 
 
 

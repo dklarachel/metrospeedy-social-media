@@ -11,10 +11,6 @@ driver.maximize_window()
 
 driver.get('https://instagram.com')
 
-# login information 
-username = 'metrospeedy'
-password = 'Summer2017!'
-
 def login (username, password):
     # enter username
     WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='username']")))
@@ -39,28 +35,6 @@ def login (username, password):
     not_now = driver.find_element_by_xpath('/html/body/div[4]/div/div/div/div[3]/button[2]')
     # driver.execute_script("arguments[0].click();", not_now)
     not_now.click()
-
-
-# def search_query (search_list):
-#     # enter query into search bar
-#     WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div/div/span[1]')))
-#     search_bar = driver.find_element_by_xpath('//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div/div/span[1]')
-#     search_bar.click()
-#     search_bar_field = driver.find_element_by_xpath('//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/input')
-#     search_bar_field.send_keys('#delivery')
-#     search_bar_field.send_keys(Keys.RETURN)
-
-#     # click on hashtag that was searched
-#     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div[3]/div[2]/div/a[1]')))
-#     searched_query_link = driver.find_element_by_xpath('//*[@id="react-root"]/section/nav/div[2]/div/div/div[2]/div[3]/div[2]/div/a[1]')
-#     searched_query_link.click()
-#     # add something to make sure it's the right one?
-
-#     # get post count for search query
-#     WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="react-root"]/section/main/header/div[2]/div[1]/div[2]/span/span')))
-#     post_count = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/header/div[2]/div[1]/div[2]/span/span')
-#     post_count = post_count.text.replace(",", "")
-#     print(post_count)
 
 def search_query (search_list):
     results = {}

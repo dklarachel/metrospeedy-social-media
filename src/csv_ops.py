@@ -7,7 +7,7 @@ from random import randint
 hashtags = []
 
 def get_hashtags ():
-    with open('hashtags.csv') as hashtags_file:
+    with open('./csv/hashtags.csv') as hashtags_file:
         reader = csv.reader(hashtags_file, delimiter=',')
         row_count = 0
         for row in reader:
@@ -18,14 +18,14 @@ def get_hashtags ():
 
 def write_hashtags (instagram_values, linkedin_values):
     fieldnames = []
-    with open('hashtags.csv', mode="r") as hashtags_file:
+    with open('./csv/hashtags.csv', mode="r") as hashtags_file:
         reader = csv.DictReader(hashtags_file)
         row_count = 0
         for row in reader:
             if row_count == 0:
                 fieldnames = list(row.keys())
             row_count += 1
-    with open('hashtags copy.csv', mode="w") as hashtags_file:
+    with open('./csv/hashtags copy.csv', mode="w") as hashtags_file:
         writer = csv.DictWriter(hashtags_file, fieldnames=fieldnames, lineterminator = '\n')
         writer.writeheader()
         # for index, value in enumerate(instagram_values):

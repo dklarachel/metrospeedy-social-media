@@ -52,7 +52,7 @@ for index, data in enumerate(months):
         columns = col_names()
     )
     data_list.append(data)
-write_data("fb_online_times.csv", hours, data_list)
+write_data("./csv/fb_online_times.csv", hours, data_list)
 
 
 

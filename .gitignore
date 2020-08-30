@@ -1,3 +1,4 @@
+.env
 /src/test.py
 /csv
 /fb_analytics
@@ -6,3 +7,4 @@ debug.log
 desktop.ini
 geckodriver.log
 ghostdriver.log
+/.vscode
